@@ -13,6 +13,7 @@ const http = require("http");
 // way2
 const server = http.createServer((req, res) => {
   console.log("req", req);
+  process.exit();
 });
 
 server.listen(3000);
