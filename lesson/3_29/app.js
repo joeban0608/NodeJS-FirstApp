@@ -14,9 +14,9 @@ const http = require("http");
 const server = http.createServer((req, res) => {
   // console.log("req", req);
   // process.exit();
-  console.log("req.url", req.url);
-  console.log("req.method", req.method);
-  console.log("req.headers", req.headers);
+  // console.log("req.url", req.url);
+  // console.log("req.method", req.method);
+  // console.log("req.headers", req.headers);
 });
 
 server.listen(3000);
