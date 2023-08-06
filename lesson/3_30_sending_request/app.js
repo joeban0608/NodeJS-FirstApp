@@ -1,4 +1,4 @@
-// Sending Response
+// Sending Request
 const http = require("http");
 
 const server = http.createServer((req, res) => {

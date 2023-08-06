@@ -1,11 +1,9 @@
-// 3-33 redirecting request
+// 3-32 routing request
 const http = require("http");
-const fs = require("fs");
-const server = http.createServer((req, res) => {
-  const reqUrl = req.url;
-  const reqMethod = req.method;
 
-  if (reqUrl === "/") {
+const server = http.createServer((req, res) => {
+  const url = req.url;
+  if (url === "/") {
     res.write("<html>");
     res.write("<head><title>Enter message</title></head>");
     res.write(
@@ -18,18 +16,6 @@ const server = http.createServer((req, res) => {
     res.write("</html>");
     res.end();
     // 此 return 是為了不執行下列程式碼, 又重新 set html
-    return;
-  }
-
-  if (reqUrl === "/message" && reqMethod === "POST") {
-    fs.writeFileSync("message.txt", "test...");
-    // way 1
-    // res.writeHead(302, { Location: "/" });
-    
-    // way 2
-    res.statusCode = 302;
-    res.setHeader('Location', '/')
-    res.end();
     return;
   }
 
