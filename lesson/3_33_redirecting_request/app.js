@@ -1,4 +1,4 @@
-// 3-33 parsing request bodies
+// 3-33 redirecting request
 const http = require("http");
 const fs = require("fs");
 const server = http.createServer((req, res) => {
@@ -22,23 +22,13 @@ const server = http.createServer((req, res) => {
   }
 
   if (reqUrl === "/message" && reqMethod === "POST") {
-    const bodyList = [];
-    // 透過 req.on() method 監聽用戶輸入資訊
-    req.on("data", (chunk) => {
-      console.log("chunk", chunk);
-      bodyList.push(chunk);
-    });
-
-    req.on("end", () => {
-      const parseBody = Buffer.concat(bodyList).toString();
-      console.log("parseBody", parseBody);
-      const message = parseBody.split('=')[1]
-      console.log('message', message)
-      fs.writeFileSync("message.txt", message);
-    });
-
+    fs.writeFileSync("message.txt", "test...");
+    // way 1
+    // res.writeHead(302, { Location: "/" });
+    
+    // way 2
     res.statusCode = 302;
-    res.setHeader("Location", "/");
+    res.setHeader('Location', '/')
     res.end();
     return;
   }
